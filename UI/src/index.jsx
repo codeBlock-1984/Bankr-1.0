@@ -1,19 +1,16 @@
 import React, { Fragment } from 'react';
 import { render } from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-import HomePage from './components/HomePage';
+import App from './App';
 import './index.css';
 
 
-const App = () =>
-{
-  return (
-    <Fragment>
-      <HomePage name="Shola" />
-    </Fragment>
-  )
-}
 
-export default App
+render(
+    <Router>
+      <App />
+    </Router>,
+  document.getElementById('app')
+);
 
-render(<App />, document.getElementById('app'))
