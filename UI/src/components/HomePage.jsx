@@ -1,8 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Route, Link } from 'react-router-dom';
 
-
-import './HomePage.css'
+import './HomePage.css';
+import '../index.css';
+import SignupPage from './SignupPage';
 
 class HomePage extends React.Component {
 
@@ -10,8 +12,8 @@ class HomePage extends React.Component {
     return (
       <div className="page-wrapper page-wrapper--bg l-flex-col">
         <nav className="landing-page-nav l-flex">
-          <a className="landing-page-nav__link" href="sign-in.html">login</a>
-          <a className="landing-page-nav__link" href="sign-up.html">sign up</a>
+          <Link to="/signin" className="landing-page-nav__link" >login</Link>
+          <Link to="/signup" className="landing-page-nav__link" >sign up</Link>
         </nav>
         <main className="landing-page-main l-flex">
           <div className="landing-page-main__title-box">
