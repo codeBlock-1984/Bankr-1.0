@@ -1,15 +1,14 @@
-import React, { Fragment } from 'react'
-import { render } from 'react-dom'
+import React, { Fragment } from 'react';
+import { render } from 'react-dom';
 
-import HomePage from './components/HomePage'
-import './index.css'
+import HomePage from './components/HomePage';
+import './index.css';
 
 
 const App = () =>
 {
   return (
     <Fragment>
-      <h1>Hello World Ezekiel</h1>
       <HomePage name="Shola" />
     </Fragment>
   )
