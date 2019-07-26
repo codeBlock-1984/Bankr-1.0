@@ -7,6 +7,7 @@ import Loader from '../components/Loader';
 import LoginFormFooter from '../components/LoginFormFooter';
 import '../index.css';
 import AuthFormHeader from '../components/AuthFormHeader';
+import AuthFormFooter from '../components/AuthFormFooter';
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -133,9 +134,7 @@ class LoginPage extends React.Component {
             
             <LoginFormFooter />
           </form>
-          <footer className="page-footer page-footer--small page-footer--small-text reg-footer">
-            <p className="page-footer__text">Copyright © Bankr 2019</p>
-          </footer> 
+          <AuthFormFooter />
         </div>   
       </div>
     );
