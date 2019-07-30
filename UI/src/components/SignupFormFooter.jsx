@@ -1,12 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+
+import FormLink from './FormLink';
 
 const SignupFormFooter = () => {
   return (
     <div className="input-wrapper">
       <div className="reg-form__link-wrapper">
         <p className="reg-form__text" id="question">Already have an account?</p>
-        <Link className="reg-form__link m-pri-color" to="/signin"> Login instead</Link>
+        <FormLink page={'/signin'} title={'Login instead'} />
       </div>
     </div>  
   );
