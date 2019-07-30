@@ -19,9 +19,9 @@ module.exports = {
       template: './UI/index.html',
       inject: 'body'
     }),
-    new CopyWebpackPlugin({
-      favicon: './UI/src/imgs/favicon.png'
-    })
+    new CopyWebpackPlugin([{
+      from: './UI/src/imgs/favicon.png'
+    }])
   ],
   module: {
     rules: [
