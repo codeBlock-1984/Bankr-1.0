@@ -58,8 +58,9 @@ class LoginPage extends React.Component {
           console.log(res);
           const { data } = res;
           const { type } = data[0];
+          console.log(data[0]);
           const { history } = this.props;
-          this.props.dispatch(loginUser(data));
+          this.props.dispatch(loginUser(data[0]));
           redirectToDashboard(type, history);
         })   
     } else {

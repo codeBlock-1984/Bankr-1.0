@@ -84,7 +84,8 @@ class SignupPage extends React.Component {
           const { data } = res;
           const { type } = data[0];
           const { history } = this.props;
-          this.props.dispatch(signupUser(data));
+          console.log(data[0]);
+          this.props.dispatch(signupUser(data[0]));
           redirectToDashboard(type, history);
         })     
     } else {
