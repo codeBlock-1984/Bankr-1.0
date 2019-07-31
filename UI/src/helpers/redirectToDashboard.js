@@ -10,7 +10,7 @@ export const redirectToDashboard = (type, history) => {
       break;
     case 'client':
     default:
-      dashboard = '/user-dasboard';
+      dashboard = '/user-dashboard';
   }
   history.push(dashboard);
 };
