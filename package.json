@@ -20,17 +20,22 @@
   "homepage": "https://github.com/codeBlock-1984/Bankr-1.0#readme",
   "dependencies": {
     "@babel/core": "^7.4.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-transform-arrow-functions": "^7.2.0",
     "@babel/preset-env": "^7.4.4",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-polyfill": "^6.26.0",
     "copy-webpack-plugin": "^5.0.4",
     "css-loader": "^2.1.1",
+    "history": "^4.9.0",
     "html-webpack-plugin": "^3.2.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
+    "redux": "^4.0.4",
     "style-loader": "^0.23.1",
     "url-loader": "^2.1.0",
     "webpack": "^4.32.0",
@@ -51,6 +56,8 @@
       "^.+\\.jsx?$": "babel-jest",
       ".+\\.(css|styl|less|sass|scss)$": "jest-transform-css"
     },
-    "setupFilesAfterEnv": ["./tests.setup.js"]
+    "setupFilesAfterEnv": [
+      "./tests.setup.js"
+    ]
   }
 }

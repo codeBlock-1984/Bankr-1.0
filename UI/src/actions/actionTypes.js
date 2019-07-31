@@ -1,0 +1,7 @@
+export const LOGIN_USER = 'LOGIN_USER';
+export const SIGNUP_USER = 'SIGNUP_USER';
+export const HANDLE_EMAIL = 'HANDLE_EMAIL';
+export const HANDLE_PASSWORD = 'HANDLE_PASSWORD';
+export const HANDLE_FIRSTNAME = 'HANDLE_FIRSTNAME';
+export const HANDLE_LASTNAME = 'HANDLE_LASTNAME';
+export const RESET_AUTH = 'RESET_AUTH'; 

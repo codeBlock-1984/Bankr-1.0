@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Input from '../components/Input';
 import ButtonInput from '../components/ButtonInput';
@@ -8,23 +8,14 @@ import LoginFormFooter from '../components/LoginFormFooter';
 import '../index.css';
 import AuthFormHeader from '../components/AuthFormHeader';
 import AuthFormFooter from '../components/AuthFormFooter';
+import { loginUser, handleEmail, handlePassword } from '../actions/auth.actions';
+import { serverCall } from '../services/serverCall';
+import { loginUrl } from '../services/servicesUrls';
+import { redirectToDashboard } from '../helpers/redirectToDashboard';
 
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      newLogin: {
-        email: '',
-        password: ''
-      },
-      errors: {
-        email: '',
-        password: '',
-        form: ''
-      },
-      response: ''
-    }
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
@@ -36,13 +27,7 @@ class LoginPage extends React.Component {
     const validEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     let error = validEmail.test(value)? '' : 'Enter a valid email address';
 
-    this.setState(previousState => ({
-      errors: { ...previousState.errors, email: error, form: '' }   
-    }), () => console.log(this.state.errors));
-
-    this.setState(previousState => ({
-        newLogin: { ...previousState.newLogin, email: value }      
-      }), () => console.log(this.state.newLogin));
+    this.props.dispatch(handleEmail({ email: value, error , login: 'login'}));
   }
 
   handlePassword(e) {
@@ -51,54 +36,45 @@ class LoginPage extends React.Component {
     const msg = 'Password must be not be less than 6 characters';
     let error = passwordLength > 5 && passwordLength < 21 ? '' : msg; 
 
-    this.setState(previousState => ({
-      errors: { ...previousState.errors, password: error, form: '' }   
-    }), () => console.log(this.state.errors));
-
-    this.setState(previousState => ({
-        newLogin: { ...previousState.newLogin, password: value }      
-      }), () => console.log(this.state.newLogin));
+    this.props.dispatch(handlePassword({ password: value, error, login: 'login' }));
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    const { email, password } = this.state.newLogin;
-    const { email: emailError, password: passwordError } = this.state.errors;
-    if (email && password && !emailError && !passwordError) {
-      const loginData = this.state.newLogin;
-      console.log(loginData);
-      const loginUrl = 'https://bankr-server.herokuapp.com/api/v1/auth/signin';
-      const loginOptions = {
-        method: 'POST',
-        body: JSON.stringify(loginData),
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-      };
     
-      fetch(loginUrl, loginOptions)
+    const { email, password } = this.props.loginDetails;
+    const { email: emailError, password: passwordError } = this.props.errors;
+    if (email && password && !emailError && !passwordError) {
+      const loginData = this.props.loginDetails;
+      console.log(loginData);
+      const loginPayload = {
+        url: loginUrl,
+        data: loginData,
+        method: 'POST'
+      }
+    
+      serverCall(loginPayload)
         .then(res => {
-          res.json().then(
-            data => {
-              console.log(data);
-              this.setState(previousState => ({
-                response: data.message    
-              }), () => console.log(this.state.response));
-            }
-          )
-        })    
+          console.log(res);
+          const { data } = res;
+          const { type } = data[0];
+          const { history } = this.props;
+          this.props.dispatch(loginUser(data));
+          redirectToDashboard(type, history);
+        })   
     } else {
       const msg = 'Both fields are required'
-      this.setState(previousState => ({
-        errors: { ...previousState.errors, form: msg }      
-      }), () => console.log(this.state.errors));
+      console.log(msg);
     }
   }
 
 
   render() {
-    const responseMessage = this.state.errors.form || this.state.response; 
+    const { email, password } = this.props.loginDetails;
+    console.log(this.props.loginDetails)
+    console.log(this.props.errors);
+    const { email: emailError, password: passwordError, form } = this.props.errors;
+    const responseMessage = form || this.props.response; 
     return (
       <div className="page-wrapper page-wrapper--bg l-flex">
         <Loader/>
@@ -109,8 +85,8 @@ class LoginPage extends React.Component {
               inputType={'email'}
               name={'email'}
               title={'Email'}
-              error={this.state.errors.email}
-              value={this.state.newLogin.email}
+              error={emailError}
+              value={email}
               placeholder={'Enter your email'}
               handleChange={this.handleEmail}
             />
@@ -119,8 +95,8 @@ class LoginPage extends React.Component {
               inputType={'password'}
               name={'password'}
               title={'Password'}
-              error={this.state.errors.password}
-              value={this.state.newLogin.password}
+              error={passwordError}
+              value={password}
               placeholder={'Enter your password'}
               handleChange={this.handlePassword}
             />
@@ -141,4 +117,13 @@ class LoginPage extends React.Component {
   }
 }
 
-export default LoginPage;
+const mapStateToProps = (state) => {
+  return {
+    loginDetails: state.auth.newLogin,
+    errors: state.auth.errors,
+    response: state.auth.response
+
+  };
+};
+
+export default connect(mapStateToProps)(LoginPage);

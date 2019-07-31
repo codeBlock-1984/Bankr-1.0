@@ -1,16 +1,23 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import { Provider } from 'react-redux';
 import { render } from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
 
-import App from './App';
+import { loginUser } from './actions/auth.actions';
+import configureStore from './store/configureStore';
+import AppRouter from './routers/AppRouter';
 import './index.css';
 
+const store = configureStore();
 
+// store.dispatch(loginUser({ userType: 'admin', user: {}, userToken: 'mytoken'}));
+const state = store.getState();
+console.log(state);
 
-render(
-    <Router>
-      <App />
-    </Router>,
-  document.getElementById('app')
+const app = (
+  <Provider store={store}>
+    <AppRouter />
+  </Provider>
 );
+
+render(app, document.getElementById('app'));
 
