@@ -9,6 +9,7 @@ import HomePage from '../pages/HomePage';
 import SignupPage from '../pages/SignupPage';
 import LoginPage from '../pages/LoginPage';
 import UserPage from '../pages/UserPage';
+import StaffPage from '../pages/StaffPage';
 
 const history = createBrowserHistory();
 
@@ -21,6 +22,7 @@ const AppRouter = () =>
         <Route path='/signup' component={SignupPage}/>
         <Route path='/signin' component={LoginPage}/>
         <Route path='/user-dashboard' component={UserPage}/>
+        <Route path='/staff-dashboard' component={StaffPage}/>
       </Switch>
     </Router>
   );      

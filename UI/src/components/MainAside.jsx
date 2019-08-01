@@ -10,6 +10,7 @@ import Loader from './Loader';
 import UserDashboard from '../pages/UserDashboard';
 import UserAccounts from '../pages/UserAccounts';
 import UserTransactions from '../pages/UserTransactions';
+import PageSwitcher from './PageSwitcher';
 
 class MainAside extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class MainAside extends React.Component {
   }
 
   render() {
+    console.log(this.props.type);
     console.log(this.props.userName);
     return (
       <section className="main-section">
@@ -35,11 +37,7 @@ class MainAside extends React.Component {
 
           <Loader />
 
-          <Switch>
-            <Route exact path='/user-dashboard' component={UserDashboard}/>
-            <Route path='/user-dashboard/accounts' component={UserAccounts}/>
-            <Route path='/user-dashboard/transactions' component={UserTransactions}/>
-          </Switch>
+          <PageSwitcher type={this.props.type}/>
         </section>
     );
   }
