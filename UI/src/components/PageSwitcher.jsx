@@ -7,6 +7,9 @@ import UserTransactions from '../pages/UserTransactions';
 import StaffDashboard from '../pages/StaffDashboard';
 import StaffAccounts from '../pages/StaffAccounts';
 import CreditDebit from '../pages/CreditDebit';
+import AdminDashboard from '../pages/AdminDashboard';
+import AdminAccounts from '../pages/AdminAccounts';
+import Users from '../pages/Users';
 
 
 const PageSwitcher = (props) => {
@@ -26,6 +29,14 @@ const PageSwitcher = (props) => {
           <Route exact path='/staff-dashboard' component={StaffDashboard}/>
           <Route path='/staff-dashboard/accounts' component={StaffAccounts}/>
           <Route path='/staff-dashboard/credit-debit' component={CreditDebit}/>
+        </Switch>
+      );
+    case 'admin':
+      return (
+        <Switch>
+          <Route exact path='/admin-dashboard' component={AdminDashboard}/>
+          <Route path='/admin-dashboard/accounts' component={AdminAccounts}/>
+          <Route path='/admin-dashboard/users' component={Users}/>
         </Switch>
       );
   }

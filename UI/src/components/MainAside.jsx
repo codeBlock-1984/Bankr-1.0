@@ -7,10 +7,9 @@ import UserPanelBox from './UserPanelBox';
 import MobileMenu from './MobileMenu';
 import SettingsModal from './SettingsModal';
 import Loader from './Loader';
-import UserDashboard from '../pages/UserDashboard';
-import UserAccounts from '../pages/UserAccounts';
-import UserTransactions from '../pages/UserTransactions';
 import PageSwitcher from './PageSwitcher';
+import getMobileMenuLinks from '../helpers/getMobileMenuLinks';
+
 
 class MainAside extends React.Component {
   constructor(props) {
@@ -19,8 +18,7 @@ class MainAside extends React.Component {
   }
 
   render() {
-    console.log(this.props.type);
-    console.log(this.props.userName);
+    const mobileMenuLinks = getMobileMenuLinks(this.props.type);
     return (
       <section className="main-section">
           <MainAsideHeader
@@ -31,7 +29,7 @@ class MainAside extends React.Component {
           
           <UserPanelBox />
 
-          <MobileMenu />
+          <MobileMenu mobileMenuLinks={mobileMenuLinks}/>
           
           <SettingsModal />
 
