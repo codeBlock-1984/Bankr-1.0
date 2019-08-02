@@ -5,7 +5,7 @@ export const userNavLinks = [
     linkClass: 'main-nav__link',
     spanClass: 'main-nav__link-desc',
     iconClass: 'fas fa-home main-nav__icon',
-    title: 'Dashboard'
+    title: 'Dashboard',
   },
   {
     page: '/user-dashboard/accounts',
@@ -13,7 +13,7 @@ export const userNavLinks = [
     linkClass: 'main-nav__link',
     spanClass: 'main-nav__link-desc',
     iconClass: 'fas fa-wallet main-nav__icon',
-    title: 'Accounts'
+    title: 'Accounts',
   },
   {
     page: '/user-dashboard/transactions',
@@ -21,8 +21,8 @@ export const userNavLinks = [
     linkClass: 'main-nav__link',
     spanClass: 'main-nav__link-desc',
     iconClass: 'fas fa-exchange-alt main-nav__icon',
-    title: 'Transactions'
-  }
+    title: 'Transactions',
+  },
 ];
 
 export const staffNavLinks = [
@@ -32,7 +32,7 @@ export const staffNavLinks = [
     linkClass: 'main-nav__link',
     spanClass: 'main-nav__link-desc',
     iconClass: 'fas fa-home main-nav__icon',
-    title: 'Dashboard'
+    title: 'Dashboard',
   },
   {
     page: '/staff-dashboard/accounts',
@@ -40,7 +40,7 @@ export const staffNavLinks = [
     linkClass: 'main-nav__link',
     spanClass: 'main-nav__link-desc',
     iconClass: 'fas fa-wallet main-nav__icon',
-    title: 'Accounts'
+    title: 'Accounts',
   },
   {
     page: '/staff-dashboard/credit-debit',
@@ -48,8 +48,8 @@ export const staffNavLinks = [
     linkClass: 'main-nav__link',
     spanClass: 'main-nav__link-desc',
     iconClass: 'fas fa-exchange-alt main-nav__icon',
-    title: 'Credit/Debit'
-  }
+    title: 'Credit/Debit',
+  },
 ];
 
 export const adminNavLinks = [
@@ -59,7 +59,7 @@ export const adminNavLinks = [
     linkClass: 'main-nav__link',
     spanClass: 'main-nav__link-desc',
     iconClass: 'fas fa-home main-nav__icon',
-    title: 'Dashboard'
+    title: 'Dashboard',
   },
   {
     page: '/admin-dashboard/accounts',
@@ -67,7 +67,7 @@ export const adminNavLinks = [
     linkClass: 'main-nav__link',
     spanClass: 'main-nav__link-desc',
     iconClass: 'fas fa-wallet main-nav__icon',
-    title: 'Accounts'
+    title: 'Accounts',
   },
   {
     page: '/admin-dashboard/users',
@@ -75,8 +75,8 @@ export const adminNavLinks = [
     linkClass: 'main-nav__link',
     spanClass: 'main-nav__link-desc',
     iconClass: 'fas fa-exchange-alt main-nav__icon',
-    title: 'User'
-  }
+    title: 'User',
+  },
 ];
 
 export const userMobileMenuLinks = [
@@ -86,7 +86,7 @@ export const userMobileMenuLinks = [
     linkClass: 'mobile-nav__link',
     spanClass: 'mobile-nav__link-desc',
     iconClass: 'fas fa-home mobile-nav__icon',
-    title: 'Dashboard'
+    title: 'Dashboard',
   },
   {
     page: '/user-dashboard/accounts',
@@ -94,7 +94,7 @@ export const userMobileMenuLinks = [
     linkClass: 'mobile-nav__link',
     spanClass: 'mobile-nav__link-desc',
     iconClass: 'fas fa-wallet mobile-nav__icon',
-    title: 'Accounts'
+    title: 'Accounts',
   },
   {
     page: '/user-dashboard/transactions',
@@ -102,8 +102,8 @@ export const userMobileMenuLinks = [
     linkClass: 'mobile-nav__link',
     spanClass: 'mobile-nav__link-desc',
     iconClass: 'fas fa-exchange-alt mobile-nav__icon',
-    title: 'Transactions'
-  }
+    title: 'Transactions',
+  },
 ];
 
 export const staffMobileMenuLinks = [
@@ -113,7 +113,7 @@ export const staffMobileMenuLinks = [
     linkClass: 'mobile-nav__link',
     spanClass: 'mobile-nav__link-desc',
     iconClass: 'fas fa-home mobile-nav__icon',
-    title: 'Dashboard'
+    title: 'Dashboard',
   },
   {
     page: '/staff-dashboard/accounts',
@@ -121,7 +121,7 @@ export const staffMobileMenuLinks = [
     linkClass: 'mobile-nav__link',
     spanClass: 'mobile-nav__link-desc',
     iconClass: 'fas fa-wallet mobile-nav__icon',
-    title: 'Accounts'
+    title: 'Accounts',
   },
   {
     page: '/staff-dashboard/credit-debit',
@@ -129,8 +129,8 @@ export const staffMobileMenuLinks = [
     linkClass: 'mobile-nav__link',
     spanClass: 'mobile-nav__link-desc',
     iconClass: 'fas fa-exchange-alt mobile-nav__icon',
-    title: 'Credit/Debit'
-  }
+    title: 'Credit/Debit',
+  },
 ];
 
 export const adminMobileMenuLinks = [
@@ -140,7 +140,7 @@ export const adminMobileMenuLinks = [
     linkClass: 'mobile-nav__link',
     spanClass: 'mobile-nav__link-desc',
     iconClass: 'fas fa-home mobile-nav__icon',
-    title: 'Dashboard'
+    title: 'Dashboard',
   },
   {
     page: '/admin-dashboard/accounts',
@@ -148,7 +148,7 @@ export const adminMobileMenuLinks = [
     linkClass: 'mobile-nav__link',
     spanClass: 'mobile-nav__link-desc',
     iconClass: 'fas fa-wallet mobile-nav__icon',
-    title: 'Accounts'
+    title: 'Accounts',
   },
   {
     page: '/admin-dashboard/users',
@@ -156,6 +156,6 @@ export const adminMobileMenuLinks = [
     linkClass: 'mobile-nav__link',
     spanClass: 'mobile-nav__link-desc',
     iconClass: 'fas fa-exchange-alt mobile-nav__icon',
-    title: 'Users'
-  }
+    title: 'Users',
+  },
 ];

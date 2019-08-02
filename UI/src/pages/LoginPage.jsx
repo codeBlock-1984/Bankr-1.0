@@ -9,9 +9,9 @@ import '../index.css';
 import AuthFormHeader from '../components/AuthFormHeader';
 import AuthFormFooter from '../components/AuthFormFooter';
 import { loginUser, handleEmail, handlePassword } from '../actions/auth.actions';
-import { serverCall } from '../services/serverCall';
+import serverCall from '../services/serverCall';
 import { loginUrl } from '../services/servicesUrls';
-import { redirectToDashboard } from '../helpers/redirectToDashboard';
+import redirectToDashboard from '../helpers/redirectToDashboard';
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -23,62 +23,61 @@ class LoginPage extends React.Component {
   }
 
   handleEmail(e) {
-    let value = e.target.value;
+    const { value } = e.target;
+    const { dispatch } = this.props;
     const validEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    let error = validEmail.test(value)? '' : 'Enter a valid email address';
+    const error = validEmail.test(value) ? '' : 'Enter a valid email address';
 
-    this.props.dispatch(handleEmail({ email: value, error , login: 'login'}));
+    dispatch(handleEmail({ email: value, error, login: 'login' }));
   }
 
   handlePassword(e) {
-    let value = e.target.value;
+    const { value } = e.target;
+    const { dispatch } = this.props;
     const passwordLength = value.length;
     const msg = 'Password must be not be less than 6 characters';
-    let error = passwordLength > 5 && passwordLength < 21 ? '' : msg; 
+    const error = passwordLength > 5 && passwordLength < 21 ? '' : msg;
 
-    this.props.dispatch(handlePassword({ password: value, error, login: 'login' }));
+    dispatch(handlePassword({ password: value, error, login: 'login' }));
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    
-    const { email, password } = this.props.loginDetails;
-    const { email: emailError, password: passwordError } = this.props.errors;
+    const { loginDetails, dispatch, errors } = this.props;
+    const { email, password } = loginDetails;
+    const { email: emailError, password: passwordError } = errors;
     if (email && password && !emailError && !passwordError) {
-      const loginData = this.props.loginDetails;
-      console.log(loginData);
+      const loginData = loginDetails;
       const loginPayload = {
         url: loginUrl,
         data: loginData,
-        method: 'POST'
-      }
-    
+        method: 'POST',
+      };
+
       serverCall(loginPayload)
-        .then(res => {
-          console.log(res);
+        .then((res) => {
           const { data } = res;
           const { type } = data[0];
-          console.log(data[0]);
           const { history } = this.props;
-          this.props.dispatch(loginUser(data[0]));
+          dispatch(loginUser(data[0]));
           redirectToDashboard(type, history);
-        })   
+        });
     } else {
-      const msg = 'Both fields are required'
+      const msg = 'Both fields are required';
       console.log(msg);
     }
   }
 
 
   render() {
-    const { email, password } = this.props.loginDetails;
-    console.log(this.props.loginDetails)
-    console.log(this.props.errors);
-    const { email: emailError, password: passwordError, form } = this.props.errors;
-    const responseMessage = form || this.props.response; 
+    const { loginDetails, response, errors } = this.props;
+    const { email, password } = loginDetails;
+    const { email: emailError, password: passwordError, form } = errors;
+    const responseMessage = form || response;
+
     return (
       <div className="page-wrapper page-wrapper--bg l-flex">
-        <Loader/>
+        <Loader />
         <div className="form-wrapper">
           <AuthFormHeader res={responseMessage} />
           <form className="reg-form l-center">
@@ -108,23 +107,20 @@ class LoginPage extends React.Component {
               defaultValue={'Sign in'}
               action={this.handleSubmit}
             />
-            
+
             <LoginFormFooter />
           </form>
           <AuthFormFooter />
-        </div>   
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    loginDetails: state.auth.newLogin,
-    errors: state.auth.errors,
-    response: state.auth.response
-
-  };
-};
+const mapStateToProps = state => ({
+  loginDetails: state.auth.newLogin,
+  errors: state.auth.errors,
+  response: state.auth.response,
+});
 
 export default connect(mapStateToProps)(LoginPage);
