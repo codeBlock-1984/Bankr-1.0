@@ -1,8 +1,7 @@
 import React from 'react';
 
-const SettingsModal = (props) => {
-  return (
-    <div id="user-settings-modal" className="brand-modal">
+const SettingsModal = () => (
+  <div id="user-settings-modal" className="brand-modal">
     <div className="brand-modal-inner settings-modal account-modal">
       <div className="brand-modal-header settings-modal-header">
         <h2 id="user-settings-modal__title" className="brand-modal-title">Profile Settings</h2>
@@ -10,10 +9,10 @@ const SettingsModal = (props) => {
       </div>
       <div id="user-settings-modal__main" className="brand-modal-main settings-modal-main">
         <div className="settings-tab">
-          <button id="image-upload-link" className="tab-links active-tab">
+          <button type="button" id="image-upload-link" className="tab-links active-tab">
             Upload avatar
           </button>
-          <button id="change-password-link" className="tab-links">
+          <button type="button" id="change-password-link" className="tab-links">
             Change password
           </button>
         </div>
@@ -21,7 +20,7 @@ const SettingsModal = (props) => {
           <p>
             <i>
               <b>*</b>
-              Enter the url of the image you wish to upload. 
+              Enter the url of the image you wish to upload.
               It can be a link to an image on an online image hosting service
               such as pravatar.cc or cloudinary
             </i>
@@ -42,7 +41,6 @@ const SettingsModal = (props) => {
       </div>
     </div>
   </div>
-  );
-};
+);
 
 export default SettingsModal;

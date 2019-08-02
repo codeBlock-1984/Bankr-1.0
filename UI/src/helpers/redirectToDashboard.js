@@ -1,7 +1,7 @@
-export const redirectToDashboard = (type, history) => {
+const redirectToDashboard = (type, history) => {
   let dashboard;
 
-  switch(type) {
+  switch (type) {
     case 'cashier':
       dashboard = '/staff-dashboard';
       break;
@@ -14,3 +14,5 @@ export const redirectToDashboard = (type, history) => {
   }
   history.push(dashboard);
 };
+
+export default redirectToDashboard;

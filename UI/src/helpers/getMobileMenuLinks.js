@@ -3,7 +3,7 @@ import { userMobileMenuLinks, staffMobileMenuLinks, adminMobileMenuLinks } from 
 const getMobileMenuLinks = (type) => {
   switch (type) {
     case 'user':
-      default:
+    default:
       return userMobileMenuLinks;
 
     case 'staff':

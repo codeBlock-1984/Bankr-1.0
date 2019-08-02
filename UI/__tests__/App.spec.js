@@ -2,11 +2,11 @@ import React from 'react';
 import expect from 'expect';
 import { shallow } from 'enzyme';
 
-import App from '../src/App.jsx';
+import App from '../src/routers/AppRouter';
 
 describe('App', () => {
   let app;
-  
+
   beforeEach(() => {
     app = shallow(<App />);
   });

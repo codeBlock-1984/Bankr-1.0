@@ -9,20 +9,22 @@ class FormLink extends React.Component {
 
     this.handleClick = this.handleClick.bind(this);
   }
-  
-  handleClick(e) {
-    this.props.dispatch(resetAuth());
+
+  handleClick() {
+    const { dispatch } = this.props;
+    dispatch(resetAuth());
   }
 
   render() {
+    const { page, handleClick, title } = this.props;
     return (
-          <Link
-            className="reg-form__link m-pri-color"
-            to={this.props.page}
-            onClick={this.handleClick}
-          >
-          {this.props.title}
-          </Link>
+      <Link
+        className="reg-form__link m-pri-color"
+        to={page}
+        onClick={handleClick}
+      >
+        {title}
+      </Link>
     );
   }
 }

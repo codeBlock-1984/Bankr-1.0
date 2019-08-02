@@ -2,13 +2,11 @@ import React from 'react';
 import expect from 'expect';
 import { shallow } from 'enzyme';
 
-import HomePage from '../src/pages/HomePage.jsx';
+import HomePage from '../src/pages/HomePage';
 
 
 let homePage;
 describe('HomePage', () => {
-  
-  
   beforeEach(() => {
     homePage = shallow(<HomePage />);
   });
@@ -24,7 +22,6 @@ describe('HomePage', () => {
 
   it('renders a NavBar component', () => {
     expect(homePage.find('Navbar').length).toBe(1);
-    console.log(homePage.find('.landing-page-nav'));
     expect(homePage.find('.landing-page-nav').length).toEqual(1);
   });
 

@@ -4,4 +4,4 @@ export const HANDLE_EMAIL = 'HANDLE_EMAIL';
 export const HANDLE_PASSWORD = 'HANDLE_PASSWORD';
 export const HANDLE_FIRSTNAME = 'HANDLE_FIRSTNAME';
 export const HANDLE_LASTNAME = 'HANDLE_LASTNAME';
-export const RESET_AUTH = 'RESET_AUTH'; 
+export const RESET_AUTH = 'RESET_AUTH';

@@ -1,10 +1,7 @@
 import React from 'react';
 
-const LoginForm = () => {
-  return (
-    <form className="reg-form l-center">
-    </form>
-  );
-};
+const LoginForm = () => (
+  <form className="reg-form l-center" />
+);
 
 export default LoginForm;

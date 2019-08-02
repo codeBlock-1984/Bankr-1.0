@@ -9,9 +9,9 @@ const ButtonInput = (props) => {
         <Link className="reg-form__link m-sec-color" to="/signin">Forgot password?</Link>
       </p>
       <input
-        className='reg-form__button'
+        className="reg-form__button"
         id={name}
-        type='button'
+        type="button"
         name={name}
         defaultValue={defaultValue}
         onClick={action}
