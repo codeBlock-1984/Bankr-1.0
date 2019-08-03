@@ -6,7 +6,6 @@ import MainTemplate from '../containers/MainTemplate';
 class UserTransactions extends React.Component {
   constructor(props) {
     super(props);
-
   }
 
   render() {

@@ -7,7 +7,6 @@ import MainTemplate from '../containers/MainTemplate';
 class UserAccounts extends React.Component {
   constructor(props) {
     super(props);
-
   }
 
   render() {
@@ -31,7 +30,10 @@ class UserAccounts extends React.Component {
                 <p className="account-detail account-status">Active</p>
                 <span className="account-detail__title">Date created</span>
                 <p className="account-detail account-created-on">10th March, 2019</p>
-                <span className="account-detail account-card"><img src="/UI/src/imgs/verve-logo.png" className="card-logo" alt="verve logo" /> &nbsp;&nbsp;&nbsp;&nbsp;** 4355 8603</span>
+                <span className="account-detail account-card">
+                  <img src="/UI/src/imgs/verve-logo.png" className="card-logo" alt="verve logo" />
+                  &nbsp;&nbsp;&nbsp;&nbsp;** 4355 8603
+                </span>
                 <p className="account-detail account-balance account-red">- 23.00 &nbsp;ngn</p>
                 <p className="account-detail account-balance-desc">(Current balance)</p>
                 <a className="action-btn view-transactions-link" href="pages/transactions/1/transactions.html">view transactions</a>
@@ -49,7 +51,10 @@ class UserAccounts extends React.Component {
                 <p className="account-detail account-status">Active</p>
                 <span className="account-detail__title">Date created</span>
                 <p className="account-detail account-created-on">10th March, 2019</p>
-                <span className="account-detail account-card"><img src="/UI/src/imgs/mastercard-logo.png" className="card-logo" alt="mastercard logo" /> &nbsp;&nbsp;&nbsp;&nbsp;** 7406 2129</span>
+                <span className="account-detail account-card">
+                  <img src="/UI/src/imgs/mastercard-logo.png" className="card-logo" alt="mastercard logo" />
+                  &nbsp;&nbsp;&nbsp;&nbsp;** 7406 2129
+                </span>
                 <p className="account-detail account-balance account-green">408,874.00 &nbsp;ngn</p>
                 <p className="account-detail account-balance-desc">(Current balance)</p>
                 <a className="action-btn view-transactions-link" href="pages/transactions/2/transactions.html">view transactions</a>

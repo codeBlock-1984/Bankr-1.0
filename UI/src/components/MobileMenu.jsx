@@ -9,7 +9,7 @@ const MobileMenu = (props) => {
       <NavList
         links={mobileMenuLinks}
         className={'mobile-nav__list'}
-        />
+      />
     </div>
   );
 };
