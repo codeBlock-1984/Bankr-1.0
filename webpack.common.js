@@ -1,14 +1,17 @@
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 
 module.exports = {
-  entry: './UI/src/index.jsx',
+  entry: {
+    js: ['babel-polyfill', './UI/src/index.jsx'],
+    vendor: ['react'],
+  },
   output: {
     path: path.join(__dirname, './UI/dist'),
-    filename: '[name].chunk.js'
+    filename: '[name].chunk.js',
   },
   resolve: {
     extensions: ['.jsx', '.js'],
@@ -17,11 +20,11 @@ module.exports = {
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
       template: './UI/index.html',
-      inject: 'body'
+      inject: 'body',
     }),
     new CopyWebpackPlugin([{
-      from: './UI/src/imgs/favicon.png'
-    }])
+      from: './UI/src/imgs/favicon.png',
+    }]),
   ],
   module: {
     rules: [
@@ -33,19 +36,19 @@ module.exports = {
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react'],
             plugins: [
-              '@babel/plugin-transform-arrow-functions'
-            ]
-          }
-        }
+              '@babel/plugin-transform-arrow-functions',
+            ],
+          },
+        },
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(png|jpg)$/,
-        use: ['url-loader']
-      }
-    ]
-  }
-}
+        use: ['url-loader'],
+      },
+    ],
+  },
+};

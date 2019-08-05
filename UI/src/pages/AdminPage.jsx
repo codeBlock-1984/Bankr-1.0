@@ -7,14 +7,13 @@ import MainAside from '../components/MainAside';
 class AdminPage extends React.Component {
   constructor(props) {
     super(props);
-
   }
 
   render() {
     return (
       <div className="page-wrapper page-wrapper--bg--plain main-wrapper">
-        <MainNav links={adminNavLinks}/>
-        <MainAside type={'admin'}/>
+        <MainNav links={adminNavLinks} />
+        <MainAside type={'admin'} />
       </div>
     );
   }

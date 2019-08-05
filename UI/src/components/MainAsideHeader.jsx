@@ -1,7 +1,29 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { toggleUserPanel } from '../actions/modal.actions';
 
 const MainAsideHeader = (props) => {
-  const { title, userName, imgUrl } = props;
+  const {
+    title,
+    userName,
+    imgUrl,
+    dispatch,
+    userPanelStyle,
+  } = props;
+
+  const handleImageClick = () => {
+    const currentStyle = userPanelStyle;
+    let newStyle;
+    if (currentStyle) {
+      newStyle = '';
+    } else {
+      newStyle = 'active--user-panel';
+    }
+    dispatch(toggleUserPanel(newStyle));
+  };
 
   return (
     <header className="main-header l-flex l-flex-row">
@@ -23,10 +45,23 @@ const MainAsideHeader = (props) => {
       </div>
       <div className="profile">
         <p className="profile__title">{userName}</p>
-        <img id="user-panel-link" src={imgUrl || '/UI/src/imgs/avatar.png'} alt="userimage" className="avatar" />
+        <img
+          id="user-panel-link"
+          src={imgUrl || '/UI/src/imgs/avatar.png'}
+          alt="userimage"
+          className="avatar"
+          onClick={handleImageClick}
+        />
       </div>
     </header>
   );
 };
 
-export default MainAsideHeader;
+const mapStateToComponentProps = (state) => {
+  const { userPanelStyle } = state.modal.styles;
+  return {
+    userPanelStyle,
+  };
+};
+
+export default connect(mapStateToComponentProps)(MainAsideHeader);
