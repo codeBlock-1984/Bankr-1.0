@@ -1,14 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Footer from '../components/Footer';
+import Footer from './Footer';
 import MainNavHeader from './MainNavHeader';
 import NavList from './NavList';
 
 class MainNav extends React.Component {
   constructor(props) {
     super(props);
-
   }
 
   render() {
@@ -16,16 +15,16 @@ class MainNav extends React.Component {
     return (
       <nav className="main-nav">
         <MainNavHeader />
-        
+
         <NavList
           links={links}
           className={'main-nav__list top-list'}
-          />
+        />
 
-        <Footer 
+        <Footer
           uniqueFooterClass={'page-footer--big'}
           uniqueFooterTextClass={'nav-footer__text'}
-          /> 
+        />
       </nav>
     );
   }

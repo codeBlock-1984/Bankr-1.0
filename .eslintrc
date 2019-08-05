@@ -42,6 +42,8 @@
           "tabWidth": 4
         }
       ],
-      "import/no-extraneous-dependencies": 0
+      "import/no-extraneous-dependencies": 0,
+      "react/self-closing-comp": 0,
+      "import/prefer-default-export": 0
   }
 }

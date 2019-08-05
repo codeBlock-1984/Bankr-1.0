@@ -7,16 +7,13 @@ import MainAside from '../components/MainAside';
 class UserPage extends React.Component {
   constructor(props) {
     super(props);
-
   }
-
-
 
   render() {
     return (
       <div className="page-wrapper page-wrapper--bg--plain main-wrapper">
-        <MainNav links={userNavLinks}/>
-        <MainAside type={'user'}/>
+        <MainNav links={userNavLinks} />
+        <MainAside type={'user'} />
       </div>
     );
   }
