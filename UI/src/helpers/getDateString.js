@@ -1,5 +1,11 @@
-const getDateString = rawTimeStamp => (
-  new Date(rawTimeStamp).toString().slice(0, 24)
-);
+class GetDateString {
+  static getShortDateString(rawTimeStamp) {
+    return new Date(rawTimeStamp).toString().slice(0, 24);
+  }
 
-export default getDateString;
+  static getLongDateString(rawTimeStamp) {
+    return new Date(rawTimeStamp).toString().slice(-61, -36);
+  }
+}
+
+export default GetDateString;

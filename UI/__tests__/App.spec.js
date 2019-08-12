@@ -2,13 +2,16 @@ import React from 'react';
 import expect from 'expect';
 import { shallow } from 'enzyme';
 
-import App from '../src/routers/AppRouter';
+import configureStore from '../src/store/configureStore';
+import AppRouter from '../src/routers/AppRouter';
+
+const store = configureStore();
 
 describe('App', () => {
   let app;
 
   beforeEach(() => {
-    app = shallow(<App />);
+    app = shallow(<AppRouter store={store} />);
   });
 
   it('renders successfully', () => {

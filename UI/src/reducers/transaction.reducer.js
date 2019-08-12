@@ -40,12 +40,15 @@ const transactionReducer = (state = initialState, action) => {
         ],
       };
 
+    case 'GET_USER_TRANSACTIONS':
+      return state;
+
     case 'SET_USER_TRANSACTIONS':
       return {
         ...state,
-        userTransactions: {
+        userTransactions: [
           ...data,
-        },
+        ],
       };
 
     default:

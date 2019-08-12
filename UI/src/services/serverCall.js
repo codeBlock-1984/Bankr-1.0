@@ -26,8 +26,7 @@ const serverCall = (payload) => {
   }
 
   return fetch(url, options)
-    .then(res => res.json())
-    .catch(error => console.log(error));
+    .then(res => res.json());
 };
 
 export default serverCall;

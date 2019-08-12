@@ -26,12 +26,15 @@ const accountReducer = (state = initialState, action) => {
         ],
       };
 
+    case 'GET_USER_ACCOUNTS':
+      return state;
+
     case 'SET_USER_ACCOUNTS':
       return {
         ...state,
-        userAccounts: {
+        userAccounts: [
           ...data,
-        },
+        ],
       };
 
     default:

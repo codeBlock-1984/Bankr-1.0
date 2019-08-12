@@ -8,8 +8,6 @@ const SingleTransactionBox = (props) => {
     transAmount,
   } = props;
 
-  console.log(props);
-
   return (
     <div className="single-box">
       <p className="trans-detail trans-title">

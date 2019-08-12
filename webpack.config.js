@@ -1,12 +1,11 @@
-const webpackMerge = require('webpack-merge')
-const commonConfig = require('./webpack.common')
+const webpackMerge = require('webpack-merge');
+const commonConfig = require('./webpack.common');
 
-module.exports = env => {
-  let envConfig
+module.exports = (env) => {
+  let envConfig;
   !env.mode
-    ? (envConfig = require(`./webpack-build-utils/webpack.development`))
-    : (envConfig = require(`./webpack-build-utils/webpack.${env.mode}`))
+    ? (envConfig = require('./webpack-build-utils/webpack.development'))
+    : (envConfig = require(`./webpack-build-utils/webpack.${env.mode}`));
 
-  console.log(env)
-  return webpackMerge({ mode: env.mode }, commonConfig, envConfig)
-}
+  return webpackMerge({ mode: env.mode }, commonConfig, envConfig);
+};
