@@ -1,30 +1,5 @@
 const initialState = {
-  userTransactions: [
-    {
-      type: 'DEBIT',
-      amount: 8900,
-      createdon: 'MON MAY 27 2019 00:32:14',
-      accountnumber: '1012936003',
-    },
-    {
-      type: 'CREDIT',
-      amount: 5600,
-      createdon: 'MON MAY 27 2019 00:32:14',
-      accountnumber: '1012936003',
-    },
-    {
-      type: 'DEBIT',
-      amount: 1300,
-      createdon: 'MON MAY 27 2019 00:32:14',
-      accountnumber: '1012935403',
-    },
-    {
-      type: 'CREDIT',
-      amount: 7300,
-      createdon: 'MON MAY 27 2019 00:32:14',
-      accountnumber: '1012935403',
-    },
-  ],
+  userTransactions: [],
   allTransactions: [],
 };
 
@@ -41,7 +16,12 @@ const transactionReducer = (state = initialState, action) => {
       };
 
     case 'GET_USER_TRANSACTIONS':
-      return state;
+      return {
+        ...state,
+        userTransactions: [
+          ...data,
+        ],
+      };
 
     case 'SET_USER_TRANSACTIONS':
       return {

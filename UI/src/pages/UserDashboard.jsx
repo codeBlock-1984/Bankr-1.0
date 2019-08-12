@@ -6,7 +6,7 @@ import TransactionList from '../components/TransactionList';
 import getTrimmedList from '../helpers/getTrimmedList';
 import AccountList from '../components/AccountList';
 import { setUserAccounts, getUserAccounts } from '../actions/account.action';
-import { setUserTransactions } from '../actions/transaction.actions';
+// import { setUserTransactions } from '../actions/transaction.actions';
 
 class UserDashboard extends React.Component {
   constructor(props) {
@@ -58,4 +58,4 @@ const mapStateToComponentProps = (state) => {
   };
 };
 
-export default connect(mapStateToComponentProps, { setUserTransactions, getUserAccounts, setUserAccounts })(UserDashboard);
+export default connect(mapStateToComponentProps, { getUserAccounts, setUserAccounts })(UserDashboard);

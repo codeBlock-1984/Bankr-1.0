@@ -10,9 +10,24 @@ import {
 import { getUserAccountsUrl, getUserTransactionsUrl } from '../services/servicesUrls';
 import serverCall from '../services/serverCall';
 
-export const getUserAccounts = () => ({
-  type: GET_USER_ACCOUNTS,
-});
+export const getUserAccounts = (email, token) => (dispatch) => {
+  const url = getUserAccountsUrl(email);
+  const config = { headers: { 'x-auth-token': token } };
+
+  axios.get(url, config)
+    .then((response) => {
+      console.log(response.data.data);
+      dispatch({
+        type: GET_USER_TRANSACTIONS,
+        data: response.data.data,
+      });
+    })
+    .catch((error) => {
+      dispatch({
+        type: GET_USER_TRANSACTIONS,
+      });
+    });
+};
 
 export const setUserAccounts = (email, token) => (dispatch) => {
   const getUserAccountsPayload = {
@@ -31,6 +46,7 @@ export const setUserAccounts = (email, token) => (dispatch) => {
         });
 
         const { accountnumber } = data[0];
+        localStorage.setItem('userAccount', accountnumber);
         const url = getUserTransactionsUrl(accountnumber);
 
         const config = { headers: { 'x-auth-token': token } };
