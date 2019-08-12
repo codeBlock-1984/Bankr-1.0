@@ -1,16 +1,5 @@
 const initialState = {
-  userAccounts: [
-    {
-      type: 'savings',
-      balance: 8900.90,
-      accountnumber: '1012936003',
-    },
-    {
-      type: 'current',
-      balance: 63500.90,
-      accountnumber: '1014763895',
-    },
-  ],
+  userAccounts: [],
   allAccounts: [],
 };
 

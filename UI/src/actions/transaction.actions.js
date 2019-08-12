@@ -24,3 +24,37 @@ export const setUserTransactions = (accountnumber, token) => (dispatch) => {
       });
     });
 };
+
+
+export const getUserTransactions = (accountnumber, token) => (dispatch) => {
+  const url = getUserTransactionsUrl(accountnumber);
+  const config = { headers: { 'x-auth-token': token } };
+
+  axios.get(url, config)
+    .then((response) => {
+      console.log(response.data.data);
+      dispatch({
+        type: GET_USER_TRANSACTIONS,
+        data: response.data.data,
+      });
+    })
+    .catch((error) => {
+      dispatch({
+        type: GET_USER_TRANSACTIONS,
+      });
+    });
+};
+// export const getUserTransactions = (accountnumber, token) => (dispatch) => ({
+//   axios.get(url, config)
+//     .then((response) => {
+//       dispatch({
+//         type: SET_USER_TRANSACTIONS,
+//         data: response.data,
+//       });
+//     })
+//     .catch((error) => {
+//       dispatch({
+//         type: GET_USER_TRANSACTIONS,
+//       });
+//     }),
+// });

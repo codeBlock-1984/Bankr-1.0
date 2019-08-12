@@ -13,7 +13,9 @@ class UserAccounts extends React.Component {
   }
 
   componentDidMount() {
-    getUserAccounts();
+    // const { getUserAccounts: getAccounts, user } = this.props;
+    // const { token, email } = user;
+    // getAccounts(email, token);
   }
 
   render() {
@@ -60,4 +62,4 @@ const mapStateToComponentProps = (state) => {
   };
 };
 
-export default connect(mapStateToComponentProps)(UserAccounts);
+export default connect(mapStateToComponentProps, { getUserAccounts })(UserAccounts);
