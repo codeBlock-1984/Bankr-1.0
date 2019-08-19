@@ -3,6 +3,7 @@ import ActionBox from './ActionBox';
 
 const ActionSection = (props) => {
   const { data } = props;
+  let key = 0;
   return (
     <div className="box trans-box l-flex l-flex-row">
       {
@@ -14,12 +15,15 @@ const ActionSection = (props) => {
             date,
           } = item;
 
+          key += 1;
+
           return (
             <ActionBox
               type={type}
               accountnumber={accountnumber}
               amount={amount}
               date={date}
+              key={key}
             />
           );
         })

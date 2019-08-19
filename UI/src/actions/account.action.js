@@ -5,68 +5,61 @@ import {
   GET_USER_ACCOUNTS,
   SET_USER_TRANSACTIONS,
   GET_USER_TRANSACTIONS,
+  GET_ALL_ACCOUNTS,
 } from './actionTypes';
 
-import { getUserAccountsUrl, getUserTransactionsUrl } from '../services/servicesUrls';
-import serverCall from '../services/serverCall';
+import { getUserAccountsUrl, getUserTransactionsUrl, getAccountsUrl } from '../services/servicesUrls';
 
-export const getUserAccounts = (email, token) => (dispatch) => {
+export const setUserAccounts = (email, token) => (dispatch) => {
   const url = getUserAccountsUrl(email);
   const config = { headers: { 'x-auth-token': token } };
 
-  axios.get(url, config)
+  return axios.get(url, config)
     .then((response) => {
-      console.log(response.data.data);
+      const { data } = response.data;
+
       dispatch({
-        type: GET_USER_TRANSACTIONS,
-        data: response.data.data,
+        type: SET_USER_ACCOUNTS,
+        data,
       });
+
+      const { accountnumber } = data[0];
+      localStorage.setItem('userAccount', accountnumber);
+      const accountsUrl = getUserTransactionsUrl(accountnumber);
+
+      const accountConfig = { headers: { 'x-auth-token': token } };
+
+      return axios.get(accountsUrl, accountConfig)
+        .then((res) => {
+          dispatch({
+            type: SET_USER_TRANSACTIONS,
+            data: res.data.data,
+          });
+        })
+        .catch((error) => {
+          dispatch({
+            type: GET_USER_TRANSACTIONS,
+            data: [],
+          });
+        });
     })
-    .catch((error) => {
-      dispatch({
-        type: GET_USER_TRANSACTIONS,
-      });
-    });
+    .catch(error => dispatch({
+      type: GET_USER_ACCOUNTS,
+      data: [],
+    }));
 };
 
-export const setUserAccounts = (email, token) => (dispatch) => {
-  const getUserAccountsPayload = {
-    url: getUserAccountsUrl(email),
-    method: 'GET',
-    token,
-  };
-
-  serverCall(getUserAccountsPayload)
-    .then((response) => {
-      const { data } = response;
-      if (data) {
-        dispatch({
-          type: SET_USER_ACCOUNTS,
-          data,
-        });
-
-        const { accountnumber } = data[0];
-        localStorage.setItem('userAccount', accountnumber);
-        const url = getUserTransactionsUrl(accountnumber);
-
-        const config = { headers: { 'x-auth-token': token } };
-
-        axios.get(url, config)
-          .then((res) => {
-            dispatch({
-              type: SET_USER_TRANSACTIONS,
-              data: res.data.data,
-            });
-          })
-          .catch((error) => {
-            dispatch({
-              type: GET_USER_TRANSACTIONS,
-            });
-          });
-      } else {
-        dispatch({
-          type: GET_USER_ACCOUNTS,
-        });
-      }
-    });
+export const getAccounts = token => (dispatch) => {
+  const config = { headers: { 'x-auth-token': token } };
+  return axios.get(getAccountsUrl, config)
+    .then((res) => {
+      dispatch({
+        type: GET_ALL_ACCOUNTS,
+        data: res.data.data,
+      });
+    })
+    .catch(error => dispatch({
+      type: GET_ALL_ACCOUNTS,
+      data: [],
+    }));
 };

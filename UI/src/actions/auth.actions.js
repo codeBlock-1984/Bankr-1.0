@@ -5,6 +5,7 @@ import {
   HANDLE_PASSWORD,
   HANDLE_FIRSTNAME,
   HANDLE_LASTNAME,
+  HANDLE_FORM,
   RESET_AUTH,
 } from './actionTypes';
 
@@ -27,6 +28,11 @@ export const handleFirstname = firstNameData => ({
 export const handleLastname = lastNameData => ({
   type: HANDLE_LASTNAME,
   lastNameData,
+});
+
+export const handleForm = formData => ({
+  type: HANDLE_FORM,
+  formData,
 });
 
 export const resetAuth = () => ({

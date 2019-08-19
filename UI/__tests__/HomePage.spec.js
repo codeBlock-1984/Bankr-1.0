@@ -3,12 +3,14 @@ import expect from 'expect';
 import { shallow } from 'enzyme';
 
 import HomePage from '../src/pages/HomePage';
-
+// import makeMockStore from './Utils/makeMockStore';
 
 let homePage;
+let res;
 describe('HomePage', () => {
   beforeEach(() => {
     homePage = shallow(<HomePage />);
+    res = homePage.instance();
   });
 
   it('renders successfully', () => {
@@ -22,7 +24,6 @@ describe('HomePage', () => {
 
   it('renders a NavBar component', () => {
     expect(homePage.find('Navbar').length).toBe(1);
-    expect(homePage.find('.landing-page-nav').length).toEqual(1);
   });
 
   it('renders a HomePageMain component', () => {
@@ -31,6 +32,5 @@ describe('HomePage', () => {
 
   it('renders a Footer component', () => {
     expect(homePage.find('Footer').length).toBe(1);
-    expect(homePage.find('.page-footer--small').length).toBe(1);
   });
 });

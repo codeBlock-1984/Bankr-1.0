@@ -5,6 +5,7 @@ module.exports = {
   collectCoverageFrom: [
     'UI/src/**/*.{js,jsx}',
     '!UI/src/index.js',
+    '!UI/__tests__/Utils',
     '!**/node_modules/**',
     '!**/vendor/**',
   ],
@@ -20,10 +21,9 @@ module.exports = {
   ],
   coverageThreshold: {
     global: {
-      branches: 95,
-      functions: 95,
-      lines: 95,
-      statements: -10,
+      branches: 60,
+      functions: 75,
+      lines: 75,
     },
   },
   errorOnDeprecated: true,
@@ -31,7 +31,7 @@ module.exports = {
   setupFilesAfterEnv: ['./tests.setup.js'],
   testEnvironment: 'jsdom',
   testMatch: ['**/__tests__/**/*.js?(x)', '**/?(*.)+(spec|test).js?(x)'],
-  testPathIgnorePatterns: ['/node_modules/'],
+  testPathIgnorePatterns: ['/node_modules/', '/UI/__tests__/Utils/makeMockStore.js'],
   testURL: 'http://localhost',
   transform: {
     '^.+\\.jsx?$': 'babel-jest',

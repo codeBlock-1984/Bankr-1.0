@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "rm -rf UI/dist && webpack-dev-server --env.mode development --open --hot",
-    "test": "jest --coverage --no-cache"
+    "test": "jest --coverage -i --no-cache",
+    "test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -58,9 +59,13 @@
     "eslint-plugin-jest": "^22.14.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
+    "fetch-mock": "^7.3.9",
     "jest": "^24.8.0",
     "jest-transform-css": "^2.0.0",
+    "moxios": "^0.4.0",
+    "node-fetch": "^2.6.0",
     "react-test-renderer": "^16.8.6",
+    "redux-mock-store": "^1.5.3",
     "webpack-dev-server": "^3.4.1"
   }
 }

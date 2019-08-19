@@ -5,12 +5,21 @@ import transactionReducer from './transaction.reducer';
 import accountReducer from './account.reducer';
 import actionReducer from './actionReducer';
 
-const reducer = combineReducers({
+const appReducer = combineReducers({
   auth: authReducer,
   modal: modalReducer,
   transaction: transactionReducer,
   account: accountReducer,
   action: actionReducer,
 });
+
+const reducer = (state, action) => {
+  const { type } = action;
+  if (type === 'LOGOUT_USER') {
+    state = undefined;
+  }
+
+  return appReducer(state, action);
+};
 
 export default reducer;

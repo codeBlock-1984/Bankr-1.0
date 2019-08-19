@@ -11,6 +11,12 @@ const UserPanelBox = ({ style, dispatch }) => {
     dispatch(showSettingsBox('active--brand-modal'));
   };
 
+  const handleLogout = () => {
+    dispatch({
+      type: 'LOGOUT_USER',
+    });
+  };
+
   return (
     <div id="user-panel" className={`user-panel-box ${userPanelStyle}`}>
       <ul className="main-nav__list bot-list">
@@ -21,7 +27,7 @@ const UserPanelBox = ({ style, dispatch }) => {
           </button>
         </li>
         <li className="main-nav__li-item">
-          <Link to="/signin" className="main-nav__link logout">
+          <Link to="/signin" className="main-nav__link logout" onClick={handleLogout}>
             <i className="fas fa-sign-out-alt main-nav__icon" />
             <span className="main-nav__link-desc user-panel__desc">Logout</span>
           </Link>

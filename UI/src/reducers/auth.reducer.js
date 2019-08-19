@@ -10,14 +10,20 @@ const initialState = {
     email: '',
     password: '',
   },
-  errors: {
+  loginErrors: {
+    email: '',
+    password: '',
+    form: null,
+  },
+  signupErrors: {
     firstName: '',
     lastName: '',
     email: '',
     password: '',
-    form: '',
+    form: null,
   },
-  response: '',
+  signupResponse: null,
+  loginResponse: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -27,13 +33,13 @@ const authReducer = (state = initialState, action) => {
         return {
           ...state,
           newLogin: { ...state.newLogin, email: action.emailData.email },
-          errors: { ...state.errors, email: action.emailData.error },
+          loginErrors: { ...state.loginErrors, email: action.emailData.error, form: null },
         };
       }
       return {
         ...state,
         newSignup: { ...state.newSignup, email: action.emailData.email },
-        errors: { ...state.errors, email: action.emailData.error },
+        signupErrors: { ...state.signupErrors, email: action.emailData.error, form: null },
       };
 
     case 'HANDLE_PASSWORD':
@@ -41,27 +47,45 @@ const authReducer = (state = initialState, action) => {
         return {
           ...state,
           newLogin: { ...state.newLogin, password: action.passwordData.password },
-          errors: { ...state.errors, password: action.passwordData.error },
+          loginErrors: { ...state.loginErrors, password: action.passwordData.error, form: null },
         };
       }
       return {
         ...state,
         newSignup: { ...state.newSignup, password: action.passwordData.password },
-        errors: { ...state.errors, password: action.passwordData.error },
+        signupErrors: { ...state.signupErrors, password: action.passwordData.error, form: null },
       };
 
     case 'HANDLE_FIRSTNAME':
       return {
         ...state,
         newSignup: { ...state.newSignup, firstName: action.firstNameData.firstName },
-        errors: { ...state.errors, firstName: action.firstNameData.error },
+        signupErrors: { ...state.signupErrors, firstName: action.firstNameData.error, form: null },
       };
 
     case 'HANDLE_LASTNAME':
       return {
         ...state,
         newSignup: { ...state.newSignup, lastName: action.lastNameData.lastName },
-        errors: { ...state.errors, lastName: action.lastNameData.error },
+        signupErrors: { ...state.signupErrors, lastName: action.lastNameData.error, form: null },
+      };
+
+    case 'HANDLE_FORM':
+      if (action.formData.login) {
+        return {
+          ...state,
+          loginErrors: {
+            ...state.loginErrors,
+            form: action.formData.message,
+          },
+        };
+      }
+      return {
+        ...state,
+        signupErrors: {
+          ...state.signupErrors,
+          form: action.formData.message,
+        },
       };
 
     case 'RESET_AUTH':
@@ -70,11 +94,15 @@ const authReducer = (state = initialState, action) => {
       };
     case 'LOGIN_USER':
       return {
-        ...state, user: action.login,
+        ...state,
+        user: action.login.data,
+        loginResponse: action.login.message,
       };
     case 'SIGNUP_USER':
       return {
-        ...state, user: action.signup,
+        ...state,
+        user: action.signup.data,
+        signupResponse: action.signup.message,
       };
     default:
       return state;
