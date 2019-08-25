@@ -93,7 +93,6 @@ export class LoginPage extends React.Component {
           <AuthFormHeader res={responseMessage} />
           <form className="reg-form l-center">
             <Input
-              id={'email'}
               inputType={'email'}
               name={'email'}
               title={'Email'}

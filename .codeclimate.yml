@@ -1,0 +1,15 @@
+exclude_patterns:
+ - "**/_test_/"
+ - "**/src/index.js"
+ - "**/coverage/"
+ - "**/node_modules/"
+ - "**/_coverage_/"
+checks:
+  method-lines:
+    config:
+      threshold: 120
+  similar-code:
+    enabled: false
+  identical-code:
+    enabled: true
+    
