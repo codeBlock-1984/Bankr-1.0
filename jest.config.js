@@ -3,15 +3,20 @@ module.exports = {
   clearMocks: true,
   collectCoverage: false,
   collectCoverageFrom: [
-    'UI/src/**/*.{js,jsx}',
-    '!UI/src/index.js',
-    '!UI/__tests__/Utils',
+    'src/**/*.{js,jsx}',
+    '!src/index.js',
+    '!src/dist',
+    '!__tests__/Utils',
     '!**/node_modules/**',
     '!**/vendor/**',
+    '!**/dist/**',
+    '!**/Utils/**',
   ],
   coverageDirectory: 'coverage',
   coveragePathIgnorePatterns: [
     '/node_modules/',
+    '/Utils/',
+    '/dist/',
   ],
   coverageReporters: [
     'json',
@@ -31,7 +36,11 @@ module.exports = {
   setupFilesAfterEnv: ['./tests.setup.js'],
   testEnvironment: 'jsdom',
   testMatch: ['**/__tests__/**/*.js?(x)', '**/?(*.)+(spec|test).js?(x)'],
-  testPathIgnorePatterns: ['/node_modules/', '/UI/__tests__/Utils/makeMockStore.js'],
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '/__tests__/Utils/makeMockStore.js',
+    '/dist/',
+  ],
   testURL: 'http://localhost',
   transform: {
     '^.+\\.jsx?$': 'babel-jest',

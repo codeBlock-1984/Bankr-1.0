@@ -19,7 +19,7 @@ const SingleAccountBox = (props) => {
         {accountNumber}
       </p>
       <span className="account-detail account-card">
-        <img src="UI/src/imgs/verve-logo.png" className="card-logo" alt="verve logo" />
+        <img src="https://res.cloudinary.com/free-spirit/image/upload/v1566750388/AH-assets/verve-logo.png" className="card-logo" alt="verve logo" />
         &nbsp;&nbsp;&nbsp;&nbsp;
         ** 4355 8603
       </span>

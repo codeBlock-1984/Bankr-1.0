@@ -29,7 +29,7 @@ const AccountBigBox = (props) => {
       <span className="account-detail__title">Date created</span>
       <p className="account-detail account-created-on">{accountDate}</p>
       <span className="account-detail account-card">
-        <img src="/UI/src/imgs/verve-logo.png" className="card-logo" alt="verve logo" />
+        <img src="https://res.cloudinary.com/free-spirit/image/upload/v1566750388/AH-assets/verve-logo.png" className="card-logo" alt="verve logo" />
         &nbsp;&nbsp;&nbsp;&nbsp;** 4355 8603
       </span>
       <p className="account-detail account-balance account-red">

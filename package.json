@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --env.mode production",
+    "build": "webpack",
     "start": "node index.js",
-    "start:dev": "rm -rf UI/dist && webpack-dev-server --env.mode development --open --hot",
+    "dev": "webpack-dev-server --open --hot",
     "test": "jest --coverage -i --no-cache",
     "test:watch": "jest --watch"
   },
@@ -34,6 +34,7 @@
     "copy-webpack-plugin": "^5.0.4",
     "css-loader": "^2.1.1",
     "expect": "^24.8.0",
+    "express": "^4.17.1",
     "history": "^4.9.0",
     "html-webpack-plugin": "^3.2.0",
     "lodash": "^4.17.15",
@@ -62,6 +63,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
     "fetch-mock": "^7.3.9",
+    "file-loader": "^4.2.0",
     "jest": "^24.8.0",
     "jest-transform-css": "^2.0.0",
     "moxios": "^0.4.0",

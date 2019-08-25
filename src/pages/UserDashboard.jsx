@@ -5,10 +5,9 @@ import MainTemplate from '../containers/MainTemplate';
 import TransactionList from '../components/TransactionList';
 import getTrimmedList from '../helpers/getTrimmedList';
 import AccountList from '../components/AccountList';
-import { setUserAccounts, getUserAccounts } from '../actions/account.action';
+import { setUserAccounts } from '../actions/account.action';
 import TopPlaceholder from '../components/TopPlaceholder';
 import BottomPlaceholder from '../components/BottomPlaceholder';
-// import { setUserTransactions } from '../actions/transaction.actions';
 
 export class UserDashboard extends React.Component {
   constructor(props) {
@@ -81,4 +80,4 @@ const mapStateToComponentProps = (state) => {
   };
 };
 
-export default connect(mapStateToComponentProps, { getUserAccounts, setUserAccounts })(UserDashboard);
+export default connect(mapStateToComponentProps, { setUserAccounts })(UserDashboard);
