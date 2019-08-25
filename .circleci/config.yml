@@ -1,0 +1,38 @@
+version: 2.0
+jobs: 
+  build: 
+    environment:
+      CC_TEST_REPORTER_ID: 5a7ee5d07b615784f8f02265e6cae88d243e5e7b46c21d75dd91f0fe8f20b9ea
+    docker: 
+      - image: "circleci/node:7.10"
+    steps: 
+      - checkout
+      - restore_cache: 
+          keys: 
+            - "v1-dependencies-{{ checksum \"package.json\" }}"
+            - v1-dependencies-
+      - run: 
+          name: Install dependecies
+          command: |
+           npm install
+      - save_cache: 
+          key: "v1-dependencies-{{ checksum \"package.json\" }}"
+          paths: 
+            - node_modules
+      - run: 
+          name: Setup Code Climate test-reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+          
+      - run: 
+          name: Run tests
+          command: |
+            mkdir /tmp/test-results
+            ./cc-test-reporter before-build
+            npm test
+      - run:
+          name: Codeclimate test coverage
+          command: |
+            ./cc-test-reporter after-build -t lcov --exit-code $?
+    working_directory: ~/UI/src

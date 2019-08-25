@@ -9,7 +9,7 @@ module.exports = {
     '!**/node_modules/**',
     '!**/vendor/**',
   ],
-  coverageDirectory: '_coverage_',
+  coverageDirectory: 'coverage',
   coveragePathIgnorePatterns: [
     '/node_modules/',
   ],

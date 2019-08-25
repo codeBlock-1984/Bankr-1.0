@@ -1,7 +1,7 @@
 import React from 'react';
 
 import AccountBigBox from './AccountBigBox';
-import GetDateString from '../helpers/GetDateString';
+import GetDateString from '../helpers/getDateString';
 
 const { getLongDateString } = GetDateString;
 
