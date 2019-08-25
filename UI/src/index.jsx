@@ -8,10 +8,6 @@ import './index.css';
 
 const store = configureStore();
 
-// store.dispatch(loginUser({ userType: 'admin', user: {}, userToken: 'mytoken'}));
-// const state = store.getState();
-// console.log(state);
-
 const app = (
   <Provider store={store}>
     <AppRouter />

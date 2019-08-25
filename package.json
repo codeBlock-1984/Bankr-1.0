@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "webpack --env.mode production",
+    "start": "node index.js",
     "start:dev": "rm -rf UI/dist && webpack-dev-server --env.mode development --open --hot",
     "test": "jest --coverage -i --no-cache",
     "test:watch": "jest --watch"
