@@ -44,7 +44,7 @@ export const MainAsideHeader = (props) => {
         <p className="profile__title">{userName}</p>
         <img
           id="user-panel-link"
-          src={imgUrl || '/UI/src/imgs/avatar.png'}
+          src={imgUrl || 'https://res.cloudinary.com/free-spirit/image/upload/v1566750387/AH-assets/avatar.png'}
           alt="userimage"
           className="avatar"
           onClick={handleImageClick}
