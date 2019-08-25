@@ -6,7 +6,7 @@ import ActionSection from '../components/ActionSection';
 import { getUserActions } from '../actions/action.action';
 import ProfileBox from '../components/ProfileBox';
 
-class StaffDashboard extends React.Component {
+export class StaffDashboard extends React.Component {
   constructor(props) {
     super(props);
   }

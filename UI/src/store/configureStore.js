@@ -10,7 +10,7 @@ export default () => {
     reducer,
     compose(
       applyMiddleware(...middleware),
-      __REDUX_DEVTOOLS_EXTENSION__ && __REDUX_DEVTOOLS_EXTENSION__(),
+      __REDUX_DEVTOOLS_EXTENSION__ ? __REDUX_DEVTOOLS_EXTENSION__() : f => f,
     ),
   );
   return store;

@@ -4,23 +4,16 @@ import { Link } from 'react-router-dom';
 
 import MainTemplate from '../containers/MainTemplate';
 import AccountBigBoxList from '../components/AccountBigBoxList';
-import getTrimmedList from '../helpers/getTrimmedList';
-import { getUserAccounts } from '../actions/account.action';
+import UserAccountPlaceholder from '../components/UserAccountPlaceholder';
 
 class UserAccounts extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  componentDidMount() {
-    // const { getUserAccounts: getAccounts, user } = this.props;
-    // const { token, email } = user;
-    // getAccounts(email, token);
-  }
-
   render() {
-    const { userAccounts, user } = this.props;
-    const trimmedUserAccounts = getTrimmedList(userAccounts, 2);
+    const { user } = this.props;
+    const trimmed = [];
     const {
       firstName,
       lastName,
@@ -33,16 +26,32 @@ class UserAccounts extends React.Component {
       email,
     };
 
+    let accountContent;
+    trimmed[0] = JSON.parse(localStorage.getItem('userAccounts1'));
+    trimmed[1] = JSON.parse(localStorage.getItem('userAccounts2'));
+
+    if (trimmed.length === 0 || !trimmed[0]) {
+      accountContent = (
+        <UserAccountPlaceholder
+          body="You do not have any accounts"
+        />
+      );
+    } else {
+      accountContent = (
+        <AccountBigBoxList
+          accountArray={trimmed}
+          userDetails={userDetails}
+        />
+      );
+    }
+
     return (
       <MainTemplate>
         <section className="box-wrapper acc-box l-flex-col">
           <h2 className="section-heading">My Accounts</h2>
           <div className="column-wrapper">
             <Link className="action-btn create-new-link" to="/user-dashboard/create-account">create new</Link>
-            <AccountBigBoxList
-              accountArray={trimmedUserAccounts}
-              userDetails={userDetails}
-            />
+            {accountContent}
           </div>
         </section>
       </MainTemplate>
@@ -51,15 +60,11 @@ class UserAccounts extends React.Component {
 }
 
 const mapStateToComponentProps = (state) => {
-  const { userTransactions } = state.transaction;
-  const { userAccounts } = state.account;
   const { user } = state.auth;
 
   return {
-    userTransactions,
-    userAccounts,
     user,
   };
 };
 
-export default connect(mapStateToComponentProps, { getUserAccounts })(UserAccounts);
+export default connect(mapStateToComponentProps)(UserAccounts);

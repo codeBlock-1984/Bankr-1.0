@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import MainTemplate from '../containers/MainTemplate';
 import TransactionTable from '../components/TransactionTable';
 import { getUserTransactions } from '../actions/transaction.actions';
+import TransactionsPlaceholder from '../components/TransactionsPlaceholder';
 
-class UserTransactions extends React.Component {
+export class UserTransactions extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -13,22 +14,34 @@ class UserTransactions extends React.Component {
   componentDidMount() {
     const { getUserTransactions: getTransactions, token } = this.props;
     const userAcc = localStorage.getItem('userAccount');
-    console.log(userAcc);
 
     getTransactions(userAcc, token);
   }
 
   render() {
     const { transactions } = this.props;
-    console.log(transactions);
+    let content;
+
+    if (transactions.length === 0) {
+      content = (
+        <TransactionsPlaceholder
+          body="No transaction records to display"
+        />
+      );
+    } else {
+      content = (
+        <TransactionTable
+          data={transactions}
+        />
+      );
+    }
+
     return (
       <MainTemplate>
         <section className="box-wrapper account-form-container l-flex l-flex-col">
           <h2 className="section-heading">My Transactions</h2>
-          <div className="account-form-wrapper l-flex l-flex-row">
-            <TransactionTable
-              data={transactions}
-            />
+          <div className="account-form-wrapper l-flex l-flex-row transaction-table-wrapper">
+            {content}
           </div>
         </section>
       </MainTemplate>
@@ -36,11 +49,10 @@ class UserTransactions extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  console.log(state);
+export const mapStateToProps = (state) => {
   const { userTransactions } = state.transaction;
   const { token } = state.auth.user;
-  console.log(userTransactions);
+
   return (
     {
       transactions: userTransactions,

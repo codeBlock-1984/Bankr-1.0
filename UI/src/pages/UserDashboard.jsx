@@ -6,9 +6,11 @@ import TransactionList from '../components/TransactionList';
 import getTrimmedList from '../helpers/getTrimmedList';
 import AccountList from '../components/AccountList';
 import { setUserAccounts, getUserAccounts } from '../actions/account.action';
+import TopPlaceholder from '../components/TopPlaceholder';
+import BottomPlaceholder from '../components/BottomPlaceholder';
 // import { setUserTransactions } from '../actions/transaction.actions';
 
-class UserDashboard extends React.Component {
+export class UserDashboard extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -23,23 +25,44 @@ class UserDashboard extends React.Component {
     const { userTransactions, userAccounts } = this.props;
     const trimmedUserTransactions = getTrimmedList(userTransactions, 4);
     const trimmedUserAccounts = getTrimmedList(userAccounts, 2);
+    let topContent;
+    let bottomContent;
+    if (userTransactions.length > 0 && userAccounts.length > 0) {
+      localStorage.setItem('userAccounts1', JSON.stringify(trimmedUserAccounts[0]));
+      localStorage.setItem('userAccounts2', JSON.stringify(trimmedUserAccounts[1]));
 
-    if (userTransactions.length === 0 || userAccounts.length === 0) {
-      return <h3>Loading...</h3>;
+      topContent = (
+        <TransactionList
+          transArray={trimmedUserTransactions}
+        />
+      );
+      bottomContent = (
+        <AccountList
+          accountArray={trimmedUserAccounts}
+        />
+      );
+    } else {
+      topContent = (
+        <TopPlaceholder
+          body="No recent transactions to display"
+        />
+      );
+      bottomContent = (
+        <BottomPlaceholder
+          body="No accounts to display"
+        />
+      );
     }
+
     return (
       <MainTemplate>
         <section className="box-wrapper top-box l-flex l-flex-col">
           <h2 className="section-heading">Recent Transactions</h2>
-          <TransactionList
-            transArray={trimmedUserTransactions}
-          />
+          {topContent}
         </section>
         <section className="box-wrapper bot-box l-flex l-flex-col">
           <h2 className="section-heading">My Accounts</h2>
-          <AccountList
-            accountArray={trimmedUserAccounts}
-          />
+          {bottomContent}
         </section>
       </MainTemplate>
     );

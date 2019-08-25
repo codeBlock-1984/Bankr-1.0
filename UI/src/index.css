@@ -366,6 +366,7 @@ body, div#app {
 .forgot-password {
   align-self: flex-start;
   font-size: 12px;
+  margin-top: 5px;
 }
 .reg-form__link-wrapper {
   display: flex;
@@ -551,6 +552,17 @@ body, div#app {
   text-transform: capitalize;
   color: #ffffff;
 }
+/* Placeholder */
+.placeholder-top {
+  height: 25vh;
+}
+.placeholder-bottom {
+  height: 50vh;
+}
+.placeholder-text {
+  margin: auto;
+}
+
 /* User profile panel */
 .user-panel-box {
   display: flex;
@@ -763,6 +775,10 @@ body, div#app {
 }
 
 /* accounts */
+.placeholder-user-account {
+  height: 60vh;
+  margin: 0;
+}
 .column-wrapper {
   display: flex;
   flex-flow: column nowrap;
@@ -874,7 +890,13 @@ body, div#app {
 }
 
 /* transactions */
-
+.placeholder-transactions {
+  height: 60vh;
+  padding: auto;
+}
+.transaction-table-wrapper {
+  height: 80vh;
+}
 .detail-table {
   display: flex;
   flex-direction: column;
@@ -1524,6 +1546,11 @@ Media Queries for Responsive layout
   .box {
     flex-wrap: nowrap;
     flex-direction: column;
+  }
+
+  /* User dashboard */
+  .placeholder-text {
+    font-size: 15px;
   }
   .no-top {
     padding: 50px 0;

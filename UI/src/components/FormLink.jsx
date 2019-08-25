@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { resetAuth } from '../actions/auth.actions';
 
-class FormLink extends React.Component {
+export class FormLink extends React.Component {
   constructor(props) {
     super(props);
 

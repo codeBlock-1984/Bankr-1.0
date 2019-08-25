@@ -10,6 +10,7 @@ import AuthFormFooter from '../components/AuthFormFooter';
 import {
   signupUser,
   handleEmail,
+  handleForm,
   handlePassword,
   handleFirstname,
   handleLastname,
@@ -20,7 +21,7 @@ import redirectToDashboard from '../helpers/redirectToDashboard';
 import '../index.css';
 
 
-class SignupPage extends React.Component {
+export class SignupPage extends React.Component {
   constructor(props) {
     super(props);
 
@@ -70,7 +71,7 @@ class SignupPage extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { signupDetails, errors } = this.props;
+    const { signupDetails, errors, dispatch } = this.props;
 
     const {
       firstName,
@@ -100,16 +101,19 @@ class SignupPage extends React.Component {
 
       serverCall(signupPayload)
         .then((res) => {
-          const { dispatch } = this.props;
-          const { data } = res;
-          const { type } = data[0];
-          const { history } = this.props;
-          dispatch(signupUser(data[0]));
-          redirectToDashboard(type, history);
+          const { data, message, error } = res;
+          if (data) {
+            const { type } = data[0];
+            const { history } = this.props;
+            dispatch(signupUser({ data: data[0], message }));
+            redirectToDashboard(type, history);
+          } else {
+            dispatch(signupUser({ data: [], message: error }));
+          }
         });
     } else {
       const msg = 'Fill out all fields';
-      console.log(msg);
+      dispatch(handleForm({ message: msg }));
     }
   }
 
@@ -130,6 +134,7 @@ class SignupPage extends React.Component {
     } = errors;
 
     const responseMessage = form || response;
+
     return (
       <div className="page-wrapper page-wrapper--bg l-flex">
         <Loader />
@@ -195,8 +200,8 @@ class SignupPage extends React.Component {
 
 const mapStateToProps = state => ({
   signupDetails: state.auth.newSignup,
-  errors: state.auth.errors,
-  response: state.auth.response,
+  errors: state.auth.signupErrors,
+  response: state.auth.signupResponse,
 
 });
 

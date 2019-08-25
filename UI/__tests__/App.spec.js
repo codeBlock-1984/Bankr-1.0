@@ -9,20 +9,26 @@ const store = configureStore();
 
 describe('App', () => {
   let app;
+  let res;
 
   beforeEach(() => {
     app = shallow(<AppRouter store={store} />);
+    res = app.dive().dive();
   });
 
   it('renders successfully', () => {
     expect(app).toBeDefined();
   });
 
+  it('renders a Router', () => {
+    expect(res.find('BrowserRouter').length).toBe(1);
+  });
+
   it('renders a Switch', () => {
-    expect(app.find('Switch').length).toBe(1);
+    expect(res.find('Switch').length).toBe(1);
   });
 
   it('renders Routes', () => {
-    expect(app.find('Route').length).toBe(3);
+    expect(res.find('Route').length).toBe(6);
   });
 });

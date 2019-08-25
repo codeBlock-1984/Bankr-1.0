@@ -10,9 +10,6 @@ const NavListItem = (props) => {
     iconClass,
     title,
   } = props;
-  // const handleClick = (e) => {
-
-  // }
 
   return (
     <li className={listClass}>

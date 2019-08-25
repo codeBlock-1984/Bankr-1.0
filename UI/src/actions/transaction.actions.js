@@ -7,32 +7,32 @@ import {
 
 import { getUserTransactionsUrl } from '../services/servicesUrls';
 
-export const setUserTransactions = (accountnumber, token) => (dispatch) => {
-  const url = getUserTransactionsUrl(accountnumber);
-  const config = { headers: { 'x-auth-token': token } };
+// export const setUserTransactions = (accountnumber, token) => (dispatch) => {
+//   const url = getUserTransactionsUrl(accountnumber);
+//   const config = { headers: { 'x-auth-token': token } };
 
-  axios.get(url, config)
-    .then((response) => {
-      dispatch({
-        type: SET_USER_TRANSACTIONS,
-        data: response.data,
-      });
-    })
-    .catch((error) => {
-      dispatch({
-        type: GET_USER_TRANSACTIONS,
-      });
-    });
-};
+//   return axios.get(url, config)
+//     .then((response) => {
+//       dispatch({
+//         type: SET_USER_TRANSACTIONS,
+//         data: response.data.data,
+//       });
+//     })
+//     .catch((error) => {
+//       dispatch({
+//         type: GET_USER_TRANSACTIONS,
+//         data: [],
+//       });
+//     });
+// };
 
 
 export const getUserTransactions = (accountnumber, token) => (dispatch) => {
   const url = getUserTransactionsUrl(accountnumber);
   const config = { headers: { 'x-auth-token': token } };
 
-  axios.get(url, config)
+  return axios.get(url, config)
     .then((response) => {
-      console.log(response.data.data);
       dispatch({
         type: GET_USER_TRANSACTIONS,
         data: response.data.data,
@@ -41,6 +41,7 @@ export const getUserTransactions = (accountnumber, token) => (dispatch) => {
     .catch((error) => {
       dispatch({
         type: GET_USER_TRANSACTIONS,
+        data: [],
       });
     });
 };

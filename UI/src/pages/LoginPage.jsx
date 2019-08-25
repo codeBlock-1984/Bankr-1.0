@@ -8,12 +8,17 @@ import LoginFormFooter from '../components/LoginFormFooter';
 import '../index.css';
 import AuthFormHeader from '../components/AuthFormHeader';
 import AuthFormFooter from '../components/AuthFormFooter';
-import { loginUser, handleEmail, handlePassword } from '../actions/auth.actions';
+import {
+  loginUser,
+  handleEmail,
+  handlePassword,
+  handleForm,
+} from '../actions/auth.actions';
 import serverCall from '../services/serverCall';
 import { loginUrl } from '../services/servicesUrls';
 import redirectToDashboard from '../helpers/redirectToDashboard';
 
-class LoginPage extends React.Component {
+export class LoginPage extends React.Component {
   constructor(props) {
     super(props);
 
@@ -26,7 +31,7 @@ class LoginPage extends React.Component {
     const { value } = e.target;
     const { dispatch } = this.props;
     const validEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const error = validEmail.test(value) ? '' : 'Enter a valid email address';
+    const error = validEmail.test(value) || value.length === 0 ? '' : 'Enter a valid email address';
 
     dispatch(handleEmail({ email: value, error, login: 'login' }));
   }
@@ -36,7 +41,7 @@ class LoginPage extends React.Component {
     const { dispatch } = this.props;
     const passwordLength = value.length;
     const msg = 'Password must be not be less than 6 characters';
-    const error = passwordLength > 5 && passwordLength < 21 ? '' : msg;
+    const error = (passwordLength > 5 && passwordLength < 21) || passwordLength === 0 ? '' : msg;
 
     dispatch(handlePassword({ password: value, error, login: 'login' }));
   }
@@ -56,15 +61,21 @@ class LoginPage extends React.Component {
 
       serverCall(loginPayload)
         .then((res) => {
-          const { data } = res;
-          const { type } = data[0];
-          const { history } = this.props;
-          dispatch(loginUser(data[0]));
-          redirectToDashboard(type, history);
+          const { data, message, error } = res;
+
+          if (data) {
+            const { type } = data[0];
+            const { history } = this.props;
+            dispatch(loginUser({ data: data[0], message }));
+            localStorage.clear();
+            redirectToDashboard(type, history);
+          } else {
+            dispatch(loginUser({ data: [], message: error }));
+          }
         });
     } else {
       const msg = 'Both fields are required';
-      console.log(msg);
+      dispatch(handleForm({ message: msg, login: 'login' }));
     }
   }
 
@@ -82,6 +93,7 @@ class LoginPage extends React.Component {
           <AuthFormHeader res={responseMessage} />
           <form className="reg-form l-center">
             <Input
+              id={'email'}
               inputType={'email'}
               name={'email'}
               title={'Email'}
@@ -119,8 +131,8 @@ class LoginPage extends React.Component {
 
 const mapStateToProps = state => ({
   loginDetails: state.auth.newLogin,
-  errors: state.auth.errors,
-  response: state.auth.response,
+  errors: state.auth.loginErrors,
+  response: state.auth.loginResponse,
 });
 
 export default connect(mapStateToProps)(LoginPage);

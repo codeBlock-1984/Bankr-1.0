@@ -26,6 +26,14 @@ const accountReducer = (state = initialState, action) => {
         ],
       };
 
+    case 'GET_ALL_ACCOUNTS':
+      return {
+        ...state,
+        allAccounts: [
+          ...data,
+        ],
+      };
+
     default:
       return state;
   }
