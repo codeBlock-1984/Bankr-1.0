@@ -24,6 +24,9 @@ import '../index.css';
 export class SignupPage extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      loading: false,
+    };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFirstName = this.handleFirstName.bind(this);
@@ -70,6 +73,9 @@ export class SignupPage extends React.Component {
   }
 
   handleSubmit(e) {
+    this.setState({
+      loading: true,
+    });
     e.preventDefault();
     const { signupDetails, errors, dispatch } = this.props;
 
@@ -108,10 +114,16 @@ export class SignupPage extends React.Component {
             dispatch(signupUser({ data: data[0], message }));
             redirectToDashboard(type, history);
           } else {
+            this.setState({
+              loading: false,
+            });
             dispatch(signupUser({ data: [], message: error }));
           }
         });
     } else {
+      this.setState({
+        loading: false,
+      });
       const msg = 'Fill out all fields';
       dispatch(handleForm({ message: msg }));
     }
@@ -134,10 +146,12 @@ export class SignupPage extends React.Component {
     } = errors;
 
     const responseMessage = form || response;
+    const { loading } = this.state;
+    const modalClass = loading ? 'block' : 'none';
 
     return (
       <div className="page-wrapper page-wrapper--bg l-flex">
-        <Loader />
+        <Loader active={modalClass} />
         <div className="form-wrapper">
           <AuthFormHeader res={responseMessage} />
           <form className="reg-form l-center">
