@@ -21,6 +21,9 @@ import redirectToDashboard from '../helpers/redirectToDashboard';
 export class LoginPage extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      loading: false,
+    };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
@@ -47,6 +50,9 @@ export class LoginPage extends React.Component {
   }
 
   handleSubmit(e) {
+    this.setState({
+      loading: true,
+    });
     e.preventDefault();
     const { loginDetails, dispatch, errors } = this.props;
     const { email, password } = loginDetails;
@@ -70,10 +76,16 @@ export class LoginPage extends React.Component {
             localStorage.clear();
             redirectToDashboard(type, history);
           } else {
+            this.setState({
+              loading: false,
+            });
             dispatch(loginUser({ data: [], message: error }));
           }
         });
     } else {
+      this.setState({
+        loading: false,
+      });
       const msg = 'Both fields are required';
       dispatch(handleForm({ message: msg, login: 'login' }));
     }
@@ -85,10 +97,13 @@ export class LoginPage extends React.Component {
     const { email, password } = loginDetails;
     const { email: emailError, password: passwordError, form } = errors;
     const responseMessage = form || response;
+    const { loading } = this.state;
+
+    const modalClass = loading ? 'block' : 'none';
 
     return (
       <div className="page-wrapper page-wrapper--bg l-flex">
-        <Loader />
+        <Loader active={modalClass} />
         <div className="form-wrapper">
           <AuthFormHeader res={responseMessage} />
           <form className="reg-form l-center">

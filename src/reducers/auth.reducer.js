@@ -34,12 +34,14 @@ const authReducer = (state = initialState, action) => {
           ...state,
           newLogin: { ...state.newLogin, email: action.emailData.email },
           loginErrors: { ...state.loginErrors, email: action.emailData.error, form: null },
+          loginResponse: null,
         };
       }
       return {
         ...state,
         newSignup: { ...state.newSignup, email: action.emailData.email },
         signupErrors: { ...state.signupErrors, email: action.emailData.error, form: null },
+        signupResponse: null,
       };
 
     case 'HANDLE_PASSWORD':
@@ -48,12 +50,14 @@ const authReducer = (state = initialState, action) => {
           ...state,
           newLogin: { ...state.newLogin, password: action.passwordData.password },
           loginErrors: { ...state.loginErrors, password: action.passwordData.error, form: null },
+          loginResponse: null,
         };
       }
       return {
         ...state,
         newSignup: { ...state.newSignup, password: action.passwordData.password },
         signupErrors: { ...state.signupErrors, password: action.passwordData.error, form: null },
+        signupResponse: null,
       };
 
     case 'HANDLE_FIRSTNAME':
@@ -61,6 +65,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         newSignup: { ...state.newSignup, firstName: action.firstNameData.firstName },
         signupErrors: { ...state.signupErrors, firstName: action.firstNameData.error, form: null },
+        signupResponse: null,
       };
 
     case 'HANDLE_LASTNAME':
@@ -68,6 +73,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         newSignup: { ...state.newSignup, lastName: action.lastNameData.lastName },
         signupErrors: { ...state.signupErrors, lastName: action.lastNameData.error, form: null },
+        signupResponse: null,
       };
 
     case 'HANDLE_FORM':

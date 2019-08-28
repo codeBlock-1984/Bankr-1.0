@@ -10,7 +10,7 @@ const AuthFormHeader = (props) => {
           <Link className="home-link" to="/">Bankr</Link>
         </h1>
       </div>
-      <p className="alert-message l-text-center" id="message-box">
+      <p className="alert-message m-error l-text-center" id="message-box">
         {res}
         &nbsp;
       </p>

@@ -12,6 +12,7 @@ const UserPanelBox = ({ style, dispatch }) => {
   };
 
   const handleLogout = () => {
+    localStorage.clear();
     dispatch({
       type: 'LOGOUT_USER',
     });
