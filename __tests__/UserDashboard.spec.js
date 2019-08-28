@@ -124,12 +124,4 @@ describe('UserDashboard', () => {
   it('renders a h2', () => {
     expect(res.find('h2').length).toBe(2);
   });
-
-  it('renders a BottomPlaceHolder', () => {
-    expect(res.find('BottomPlaceholder').length).toBe(1);
-  });
-
-  it('renders a TopPlaceholder', () => {
-    expect(res.find('TopPlaceholder').length).toBe(1);
-  });
 });

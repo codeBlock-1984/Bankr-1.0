@@ -74,6 +74,7 @@ export class LoginPage extends React.Component {
             const { history } = this.props;
             dispatch(loginUser({ data: data[0], message }));
             localStorage.clear();
+            localStorage.setItem('userToken', data[0].token);
             redirectToDashboard(type, history);
           } else {
             this.setState({

@@ -37,7 +37,6 @@ const AccountBigBox = (props) => {
         &nbsp;ngn
       </p>
       <p className="account-detail account-balance-desc">(Current balance)</p>
-      <a className="action-btn view-transactions-link" href="pages/transactions/1/transactions.html">view transactions</a>
     </div>
   );
 };
