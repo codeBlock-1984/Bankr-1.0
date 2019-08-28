@@ -8,3 +8,4 @@ export const getUserAccountsUrl = emailParam => `${baseUrl}/users/${emailParam}/
 export const getUserProfileUrl = id => `https://bankr-server.herokuapp.com/api/v1/users/${id}`;
 export const getUserActionsUrl = 'https://bankr-server.herokuapp.com/api/v1/transactions/cashier';
 export const getAccountsUrl = 'https://bankr-server.herokuapp.com/api/v1/accounts';
+export const createAccountUrl = 'https://bankr-server.herokuapp.com/api/v1/accounts';

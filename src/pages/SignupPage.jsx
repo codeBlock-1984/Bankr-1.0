@@ -112,6 +112,8 @@ export class SignupPage extends React.Component {
             const { type } = data[0];
             const { history } = this.props;
             dispatch(signupUser({ data: data[0], message }));
+            localStorage.clear();
+            localStorage.setItem('userToken', data[0].token);
             redirectToDashboard(type, history);
           } else {
             this.setState({

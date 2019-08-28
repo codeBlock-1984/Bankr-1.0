@@ -41,7 +41,7 @@ describe('UserAccounts', () => {
     expect(res.find('div').length).toBe(1);
   });
 
-  it('renders a Link', () => {
-    expect(res.find('Link').length).toBe(1);
+  it('renders a button', () => {
+    expect(res.find('button').length).toBe(1);
   });
 });

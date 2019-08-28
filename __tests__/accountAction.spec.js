@@ -52,7 +52,8 @@ describe('Account Actions', () => {
       store = mockStore({});
       store.dispatch(setUserAccounts('emmanuelroic@gmail.com', token))
         .then(() => {
-          expect(store.getActions()).toEqual(expectedActions);
+          expect(store.getActions()[0].type).toEqual(expectedActions[0].type);
+          expect(store.getActions()[1].type).toEqual(expectedActions[1].type);
           done();
         });
     });
@@ -99,7 +100,7 @@ describe('Account Actions', () => {
       store = mockStore({});
       store.dispatch(getAccounts(adminToken))
         .then(() => {
-          expect(store.getActions()).toEqual(expectedActions);
+          expect(store.getActions()[0].type).toEqual(expectedActions[0].type);
           done();
         });
     });

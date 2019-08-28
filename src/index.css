@@ -868,11 +868,11 @@ body, div#app {
   justify-content: center;
   width: 99%;
   margin-bottom: 0px;
-  padding-top: 50px;
+  padding-top: 5px;
 }
 .account-form__fieldset {
-  flex-basis: 50%;
-  width: 70%;
+  flex-basis: 100%;
+  width: 100%;
 }
 .new-account-box {
   display: flex;
@@ -1773,7 +1773,7 @@ Media Queries for Responsive layout
   }
   .account-form {
     flex-direction: column;
-    padding-top: 10px;
+    padding-top: 5px;
   }
   .create-acc-form__input {
     width: 100%;
@@ -1795,7 +1795,7 @@ Media Queries for Responsive layout
 @media screen and (min-width: 768px) {
   .account-form {
     flex-direction: column;
-    padding-top: 30px;
+    padding-top: 5px;
     align-items: center;
   }
   .create-acc-form__input, #create-account-button {
@@ -1810,10 +1810,10 @@ Media Queries for Responsive layout
   .account-form {
     flex-direction: row;
     flex-wrap: nowrap;
-    padding-top: 30px;
+    padding-top: 5px;
   }
   .create-acc-form__input {
-    width: 90%;
+    width: 100%;
   }
   .reg-form__fieldset {
     margin: 15px 25px;
@@ -1821,8 +1821,8 @@ Media Queries for Responsive layout
     width: 70%;
   }
   .account-form__fieldset {
-    flex-basis: 50%;
-    width: 70%;
+    flex-basis: 100%;
+    width: 100%;
   }
 }
 @media screen and (min-width: 2000px) {

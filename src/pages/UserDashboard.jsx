@@ -26,7 +26,7 @@ export class UserDashboard extends React.Component {
     const trimmedUserAccounts = getTrimmedList(userAccounts, 2);
     let topContent;
     let bottomContent;
-    if (userTransactions.length > 0 && userAccounts.length > 0) {
+    if (userTransactions.length > 0 && userAccounts.length >= 2) {
       localStorage.setItem('userAccounts1', JSON.stringify(trimmedUserAccounts[0]));
       localStorage.setItem('userAccounts2', JSON.stringify(trimmedUserAccounts[1]));
 
@@ -40,7 +40,35 @@ export class UserDashboard extends React.Component {
           accountArray={trimmedUserAccounts}
         />
       );
-    } else {
+    } else if (userAccounts.length >= 2) {
+      localStorage.setItem('userAccounts1', JSON.stringify(trimmedUserAccounts[0]));
+      localStorage.setItem('userAccounts2', JSON.stringify(trimmedUserAccounts[1]));
+
+      topContent = (
+        <TopPlaceholder
+          body="No recent transactions to display"
+        />
+      );
+      bottomContent = (
+        <AccountList
+          accountArray={trimmedUserAccounts}
+        />
+      );
+    } else if (userAccounts.length === 1) {
+      localStorage.setItem('userAccounts1', JSON.stringify(trimmedUserAccounts[0]));
+      localStorage.setItem('userAccounts2', JSON.stringify({}));
+
+      topContent = (
+        <TopPlaceholder
+          body="No recent transactions to display"
+        />
+      );
+      bottomContent = (
+        <AccountList
+          accountArray={trimmedUserAccounts}
+        />
+      );
+    } else if (userTransactions.length === 0 && userAccounts.length === 0) {
       topContent = (
         <TopPlaceholder
           body="No recent transactions to display"
